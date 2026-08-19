@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Rolling Frame | Capture Your Moment</title>
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg-dark: #0a0a0c;
+      --bg-card: #141418;
+      --accent: #d4af37;
+      --accent-hover: #b8972c;
+      --text-main: #f3f3f3;
+      --text-muted: #9e9ea7;
+      --border: rgba(255, 255, 255, 0.08);
+      --font-display: 'Cinzel', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAVIGATION */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(10, 10, 12, 0.85);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .brand-logo img {
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: 0.3s;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-link:hover {
+      color: var(--accent);
+    }
+
+    /* HERO / CAROUSEL */
+    #home {
+      padding-top: 80px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .carousel-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 2rem auto;
+      width: 90%;
+      height: 65vh;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      border: 1px solid var(--border);
+    }
+
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
+    }
+
+    .carousel-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,10,12,0.95) 10%, rgba(10,10,12,0.2) 60%, rgba(10,10,12,0.6) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem;
+    }
+
+    .hero-tag {
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      max-width: 800px;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtext {
+      color: var(--text-muted);
+      max-width: 600px;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #000;
+      padding: 0.85rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: #fff;
+      padding: 0.85rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      transition: 0.3s;
+    }
+
+    .btn-outline:hover {
+      border-color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* SECTION BASE */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-subtitle {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+    }
+
+    /* PORTFOLIO GRID */
+    .portfolio-category {
+      margin-bottom: 3.5rem;
+    }
+
+    .category-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 3px solid var(--accent);
+      padding-left: 12px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .gallery-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--bg-card);
+      aspect-ratio: 4/5;
+      border: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      border: 1px solid var(--border);
+    }
+
+    /* PRICING */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .price-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: 0.3s;
+    }
+
+    .price-card:hover {
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateY(-5px);
+    }
+
+    .price-card.featured {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, rgba(212, 175, 55, 0.08) 0%, rgba(20, 20, 24, 1) 100%);
+    }
+
+    .card-ribbon {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--accent);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .plan-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .plan-features {
+      list-style: none;
+      margin-bottom: 2rem;
+      flex-grow: 1;
+    }
+
+    .plan-features li {
+      padding: 0.6rem 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .plan-features li i {
+      color: var(--accent);
+      width: 18px;
+    }
+
+    /* WISUDA HORIZONTAL CARD */
+    .wisuda-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    /* CONTACT / CTA BANNER */
+    .cta-banner {
+      background: linear-gradient(135deg, #1c180e 0%, #101014 100%);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 24px;
+      padding: 4rem 2rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .cta-banner h2 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-banner p {
+      color: var(--text-muted);
+      max-width: 550px;
+      margin: 0 auto 2rem;
+    }
+
+    /* FLOATING WA */
+    .floating-wa {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25D366;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.35);
+      z-index: 1000;
+      transition: 0.3s;
+    }
+
+    .floating-wa:hover {
+      transform: scale(1.05);
+      background: #20ba59;
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu { display: none; }
+      .carousel-container { height: 75vh; }
+      .hero-headline { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header>
+    <div class="nav-container">
+      <a href="#home" class="brand-logo">
+        <img src="images/logo.png" alt="Logo The Rolling Frame" onerror="this.style.display='none'; document.getElementById('alt-icon').style.display='inline-block';">
+        <i id="alt-icon" data-lucide="film" style="color: var(--accent); display: none;"></i>
+        <span class="brand-title">The Rolling Frame</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link">Halaman Utama</a></li>
+        <li><a href="#portfolio" class="nav-link">Portofolio</a></li>
+        <li><a href="#pricelist" class="nav-link">Price List</a></li>
+      </ul>
+      <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20ingin%20tanya%20info%20paket" target="_blank" class="btn-primary" style="padding: 0.55rem 1.2rem; font-size: 0.8rem;">
+        Hubungi Kami
+      </a>
+    </div>
+  </header>
+
+  <!-- HOME / HERO CAROUSEL -->
+  <section id="home" style="max-width: 100%; padding-left: 0; padding-right: 0;">
+    <div class="carousel-container">
+      <div class="carousel-slide active" style="background-image: url('images/hero-1.jpg');"></div>
+      <div class="carousel-slide" style="background-image: url('images/hero-2.jpg');"></div>
+      <div class="carousel-slide" style="background-image: url('images/hero-3.jpg');"></div>
+
+      <div class="carousel-overlay">
+        <span class="hero-tag">Professional Photo & Videography</span>
+        <h1 class="hero-headline">Abadikan Setiap Detik Berharga Anda dengan Sempurna.</h1>
+        <p class="hero-subtext">Dari visualisasi emosi pre-wedding hingga selebrasi wisuda yang sakral. Kami hadirkan cerita autentik dalam setiap frame.</p>
+        <div class="hero-cta-group">
+          <a href="#pricelist" class="btn-primary">Lihat Paket</a>
+          <a href="#portfolio" class="btn-outline">Eksplor Galeri</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO SECTION -->
+  <section id="portfolio">
+    <div class="section-header">
+      <span class="section-subtitle">Visual Storytelling</span>
+      <h2 class="section-title">Portofolio Pilihan</h2>
+    </div>
+
+    <!-- Pre-Wedding Category -->
+    <div class="portfolio-category">
+      <h3 class="category-title">Pre-Wedding & Wedding</h3>
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <img src="images/prewed-1.jpg" alt="Prewedding 1">
+          <span class="gallery-badge">Akad & Syukuran</span>
+        </div>
+        <div class="gallery-card">
+          <img src="images/prewed-2.jpg" alt="Prewedding 2">
+          <span class="gallery-badge">Intimate Outdoor</span>
+        </div>
+        <div class="gallery-card">
+          <img src="images/prewed-3.jpg" alt="Prewedding 3">
+          <span class="gallery-badge">Cinematic Night</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wisuda Category -->
+    <div class="portfolio-category">
+      <h3 class="category-title">Wisuda & Graduation</h3>
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <img src="images/wisuda-1.jpg" alt="Wisuda 1">
+          <span class="gallery-badge">Studio Session</span>
+        </div>
+        <div class="gallery-card">
+          <img src="images/wisuda-2.jpg" alt="Wisuda 2">
+          <span class="gallery-badge">Campus Outdoor</span>
+        </div>
+        <div class="gallery-card">
+          <img src="images/wisuda-3.jpg" alt="Wisuda 3">
+          <span class="gallery-badge">Family & Portrait</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICELIST SECTION -->
+  <section id="pricelist">
+    <div class="section-header">
+      <span class="section-subtitle">Investasi Momen</span>
+      <h2 class="section-title">Price List Paket</h2>
+    </div>
+
+    <!-- Pre-Wedding Pricing Cards -->
+    <div class="pricing-grid">
+      <!-- Origin -->
+      <div class="price-card">
+        <h3 class="plan-name">Origin</h3>
+        <div class="plan-price">Rp1.500.000</div>
+        <ul class="plan-features">
+          <li><i data-lucide="check"></i> 1 Tim Foto & Video</li>
+          <li><i data-lucide="clock"></i> Durasi 6 Jam Kerja</li>
+          <li><i data-lucide="image"></i> All Softfile Foto</li>
+          <li style="opacity: 0.4;"><i data-lucide="minus"></i> Tanpa Highlight Video</li>
+          <li style="opacity: 0.4;"><i data-lucide="minus"></i> Tanpa Cinematic Video</li>
+        </ul>
+        <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20tertarik%20dengan%20Paket%20Prewed%20Origin" target="_blank" class="btn-outline" style="text-align: center; justify-content: center;">Pilih Paket</a>
+      </div>
+
+      <!-- Signature -->
+      <div class="price-card featured">
+        <span class="card-ribbon">Most Popular</span>
+        <h3 class="plan-name">Signature</h3>
+        <div class="plan-price">Rp2.000.000</div>
+        <ul class="plan-features">
+          <li><i data-lucide="check"></i> 1 Tim Foto & Video</li>
+          <li><i data-lucide="clock"></i> Durasi 8 Jam Kerja</li>
+          <li><i data-lucide="image"></i> All Softfile Foto</li>
+          <li><i data-lucide="film"></i> Highlight Video</li>
+          <li style="opacity: 0.4;"><i data-lucide="minus"></i> Tanpa Cinematic Video</li>
+        </ul>
+        <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20tertarik%20dengan%20Paket%20Prewed%20Signature" target="_blank" class="btn-primary" style="text-align: center; justify-content: center;">Pilih Paket</a>
+      </div>
+
+      <!-- Legacy -->
+      <div class="price-card">
+        <h3 class="plan-name">Legacy</h3>
+        <div class="plan-price">Rp3.000.000</div>
+        <ul class="plan-features">
+          <li><i data-lucide="check"></i> 1 Tim Foto & Video</li>
+          <li><i data-lucide="clock"></i> Durasi 10 Jam Kerja</li>
+          <li><i data-lucide="image"></i> All Softfile Foto</li>
+          <li><i data-lucide="film"></i> Highlight Video</li>
+          <li><i data-lucide="video"></i> Cinematic Video Eksklusif</li>
+        </ul>
+        <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20tertarik%20dengan%20Paket%20Prewed%20Legacy" target="_blank" class="btn-outline" style="text-align: center; justify-content: center;">Pilih Paket</a>
+      </div>
+    </div>
+
+    <!-- Wisuda Single Card -->
+    <div class="wisuda-card">
+      <div>
+        <span class="hero-tag">Special Category</span>
+        <h3 class="plan-name" style="margin-bottom: 0.3rem;">Paket Wisuda (Origin)</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">1 Tim Dokumentasi Foto • Durasi 2 Jam • Softfile ±30–50 Foto Edited</p>
+      </div>
+      <div style="display: flex; align-items: center; gap: 1.5rem;">
+        <div class="plan-price" style="margin-bottom: 0;">Rp450.000</div>
+        <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20tertarik%20dengan%20Paket%20Wisuda" target="_blank" class="btn-primary">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <!-- CALL TO ACTION BANNER -->
+    <div class="cta-banner">
+      <h2>Capture Your Moment Together</h2>
+      <p>Jangan biarkan momen berharga berlalu tanpa cerita visual yang berkesan. Konsultasikan jadwal dan konsep impian Anda bersama kami sekarang.</p>
+      <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20ingin%20konsultasi%20jadwal" target="_blank" class="btn-primary" style="font-size: 1rem; padding: 1rem 2.5rem;">
+        <i data-lucide="message-circle"></i> Hubungi WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- FLOATING WA BUTTON -->
+  <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame" class="floating-wa" target="_blank">
+    <i data-lucide="message-circle"></i>
+    <span>WhatsApp Kami</span>
+  </a>
+
+  <!-- SCRIPTS -->
+  <script>
+    lucide.createIcons();
+
+    // Auto Hero Carousel
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentSlide = 0;
+
+    function nextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+
+    if (slides.length > 1) {
+      setInterval(nextSlide, 4500);
+    }
+  </script>
+</body>
+</html>
