@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Rolling Frame | Capture Your Moment</title>
+  <title>The Rolling Frame | Frame Your Memories</title>
   <!-- Google Fonts & Lucide Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -345,11 +345,33 @@
       margin-bottom: 0.5rem;
     }
 
+    .price-container {
+      margin-bottom: 1.5rem;
+    }
+
+    .original-price {
+      font-size: 1rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-right: 8px;
+    }
+
+    .promo-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      background: rgba(212, 175, 55, 0.2);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
     .plan-price {
       font-size: 2rem;
       font-weight: 700;
       color: var(--accent);
-      margin-bottom: 1.5rem;
+      line-height: 1.2;
     }
 
     .plan-features {
@@ -368,6 +390,11 @@
       border-bottom: 1px solid rgba(255,255,255,0.03);
     }
 
+    .plan-features li.highlight-item {
+      color: #fff;
+      font-weight: 600;
+    }
+
     .plan-features li i {
       color: var(--accent);
       width: 18px;
@@ -377,6 +404,20 @@
     .wisuda-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* EVENT COOPERATION BANNER */
+    .event-collab-card {
+      background: var(--bg-card);
+      border: 1px dashed rgba(212, 175, 55, 0.4);
       border-radius: 20px;
       padding: 2rem;
       display: flex;
@@ -469,10 +510,10 @@
 
       <div class="carousel-overlay">
         <span class="hero-tag">Professional Photo & Videography</span>
-        <h1 class="hero-headline">Abadikan Setiap Detik Berharga Anda dengan Sempurna.</h1>
+        <h1 class="hero-headline">Frame Your Memories</h1>
         <p class="hero-subtext">Dari visualisasi emosi pre-wedding hingga selebrasi wisuda yang sakral. Kami hadirkan cerita autentik dalam setiap frame.</p>
         <div class="hero-cta-group">
-          <a href="#pricelist" class="btn-primary">Lihat Paket</a>
+          <a href="#pricelist" class="btn-primary">Lihat Paket Promo</a>
           <a href="#portfolio" class="btn-outline">Eksplor Galeri</a>
         </div>
       </div>
@@ -537,57 +578,98 @@
       <!-- Origin -->
       <div class="price-card">
         <h3 class="plan-name">Origin</h3>
-        <div class="plan-price">Rp1.500.000</div>
+        <div class="price-container">
+          <div>
+            <span class="original-price">Rp1.700.000</span>
+            <span class="promo-badge">Promo</span>
+          </div>
+          <div class="plan-price">Rp1.500.000</div>
+        </div>
         <ul class="plan-features">
           <li><i data-lucide="check"></i> 1 Tim Foto & Video</li>
           <li><i data-lucide="clock"></i> Durasi 6 Jam Kerja</li>
           <li><i data-lucide="image"></i> All Softfile Foto</li>
+          <li style="opacity: 0.4;"><i data-lucide="minus"></i> Tanpa Cetak & Album</li>
           <li style="opacity: 0.4;"><i data-lucide="minus"></i> Tanpa Highlight Video</li>
           <li style="opacity: 0.4;"><i data-lucide="minus"></i> Tanpa Cinematic Video</li>
         </ul>
-        <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20tertarik%20dengan%20Paket%20Prewed%20Origin" target="_blank" class="btn-outline" style="text-align: center; justify-content: center;">Pilih Paket</a>
+        <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20tertarik%20dengan%20Paket%20Prewed%20Origin%20(Promo%201.5jt)" target="_blank" class="btn-outline" style="text-align: center; justify-content: center;">Pilih Paket</a>
       </div>
 
       <!-- Signature -->
       <div class="price-card featured">
         <span class="card-ribbon">Most Popular</span>
         <h3 class="plan-name">Signature</h3>
-        <div class="plan-price">Rp2.000.000</div>
+        <div class="price-container">
+          <div>
+            <span class="original-price">Rp2.500.000</span>
+            <span class="promo-badge">Best Value</span>
+          </div>
+          <div class="plan-price">Rp2.000.000</div>
+        </div>
         <ul class="plan-features">
           <li><i data-lucide="check"></i> 1 Tim Foto & Video</li>
           <li><i data-lucide="clock"></i> Durasi 8 Jam Kerja</li>
           <li><i data-lucide="image"></i> All Softfile Foto</li>
+          <li class="highlight-item"><i data-lucide="book-open"></i> Include Album Cetak</li>
+          <li class="highlight-item"><i data-lucide="frame"></i> Cetak Foto 12R + Bingkai (1 Pcs)</li>
           <li><i data-lucide="film"></i> Highlight Video</li>
           <li style="opacity: 0.4;"><i data-lucide="minus"></i> Tanpa Cinematic Video</li>
         </ul>
-        <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20tertarik%20dengan%20Paket%20Prewed%20Signature" target="_blank" class="btn-primary" style="text-align: center; justify-content: center;">Pilih Paket</a>
+        <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20tertarik%20dengan%20Paket%20Prewed%20Signature%20(Promo%202jt)" target="_blank" class="btn-primary" style="text-align: center; justify-content: center;">Pilih Paket</a>
       </div>
 
       <!-- Legacy -->
       <div class="price-card">
         <h3 class="plan-name">Legacy</h3>
-        <div class="plan-price">Rp3.000.000</div>
+        <div class="price-container">
+          <div>
+            <span class="original-price">Rp4.000.000</span>
+            <span class="promo-badge">Exclusive</span>
+          </div>
+          <div class="plan-price">Rp3.000.000</div>
+        </div>
         <ul class="plan-features">
           <li><i data-lucide="check"></i> 1 Tim Foto & Video</li>
           <li><i data-lucide="clock"></i> Durasi 10 Jam Kerja</li>
           <li><i data-lucide="image"></i> All Softfile Foto</li>
+          <li class="highlight-item"><i data-lucide="book-open"></i> Include Premium Album</li>
+          <li class="highlight-item"><i data-lucide="frame"></i> Cetak Foto 12R + Bingkai (2 Pcs)</li>
           <li><i data-lucide="film"></i> Highlight Video</li>
           <li><i data-lucide="video"></i> Cinematic Video Eksklusif</li>
         </ul>
-        <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20tertarik%20dengan%20Paket%20Prewed%20Legacy" target="_blank" class="btn-outline" style="text-align: center; justify-content: center;">Pilih Paket</a>
+        <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20tertarik%20dengan%20Paket%20Prewed%20Legacy%20(Promo%203jt)" target="_blank" class="btn-outline" style="text-align: center; justify-content: center;">Pilih Paket</a>
       </div>
     </div>
 
     <!-- Wisuda Single Card -->
     <div class="wisuda-card">
       <div>
-        <span class="hero-tag">Special Category</span>
+        <span class="hero-tag">Special Graduation</span>
         <h3 class="plan-name" style="margin-bottom: 0.3rem;">Paket Wisuda (Origin)</h3>
         <p style="color: var(--text-muted); font-size: 0.9rem;">1 Tim Dokumentasi Foto • Durasi 2 Jam • Softfile ±30–50 Foto Edited</p>
       </div>
-      <div style="display: flex; align-items: center; gap: 1.5rem;">
-        <div class="plan-price" style="margin-bottom: 0;">Rp450.000</div>
-        <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20tertarik%20dengan%20Paket%20Wisuda" target="_blank" class="btn-primary">Pesan Sekarang</a>
+      <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+        <div>
+          <span class="original-price">Rp450.000</span>
+          <span class="promo-badge">Special Deal</span>
+          <div class="plan-price" style="margin-top: 2px;">Rp350.000</div>
+        </div>
+        <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20tertarik%20dengan%20Paket%20Wisuda%20(Promo%20350rb)" target="_blank" class="btn-primary">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <!-- EVENT & COLLABORATION CARD -->
+    <div class="event-collab-card">
+      <div style="max-width: 650px;">
+        <span class="hero-tag" style="color: #fff;"><i data-lucide="calendar" style="width:14px; display:inline-block; vertical-align:middle;"></i> Event & Corporate Documentation</span>
+        <h3 class="plan-name" style="margin-top: 0.3rem;">Kerjasama Dokumentasi Event / Acara Khusus</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Butuh dokumentasi untuk seminar, gathering, konser, anniversary, atau event komunitas? Kami menyediakan penawaran khusus dan tim profesional sesuai kebutuhan acara Anda.</p>
+      </div>
+      <div>
+        <a href="https://wa.me/62895321868008?text=Halo%20The%20Rolling%20Frame,%20saya%20ingin%20konsultasi%20kerjasama%20dokumentasi%20event" target="_blank" class="btn-outline" style="border-color: var(--accent); color: var(--accent);">
+          <i data-lucide="handshake"></i> Hubungi Kerjasama Event
+        </a>
       </div>
     </div>
 
